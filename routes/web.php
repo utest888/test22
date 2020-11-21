@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthForgotPasswordController;
 use App\Http\Controllers\AuthResetPasswordPasswordController;
+use App\Http\Controllers\StatusesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,5 @@ Route::get('password/reset', [AuthForgotPasswordController::class, 'showLinkRequ
 Route::post('password/email', [AuthForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('password/reset/{token}', [AuthResetPasswordPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [AuthResetPasswordPasswordController::class, 'reset'])->name('password.update');
+
+Route::resource('statuses', StatusesController::class, ['only' => ['store', 'destroy']]);
